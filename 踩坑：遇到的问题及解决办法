@@ -1,0 +1,25 @@
+该项目静态页面主要来源于老师提供的课件，但在写的过程中也遇到一些问题，导致页面不能正常呈现。在此列出开发过程中遇到的一些问题。
+### 1.  图标问题
+在开发过程中，图标已替换为笔者选择的图标，来源：https://www.iconfont.cn/
+
+### 2.  swiper相关问题
+（1）引入：  参考网址：https://blog.csdn.net/u014292161/article/details/109045045
+    import Swiper from 'swiper/bundle';
+（2）创建：
+    在界面更新之后创建Swiper对象
+    1). 使用回调+$nextTick()
+    2). 使用watch+$nextTick()	
+
+### 3.  后台给手机号发送验证码
+参考网址：https://blog.csdn.net/weixin_43334673/article/details/109119854
+因为需要给特定手机号发送验证码，所以验证码都发送到笔者手机号了，如果有测试者，请按照参考网址修改server/router/index.js中相关路由部分代码
+
+### 4.  vue中params和query的区别，以及具体用法
+参考网址：https://blog.csdn.net/weixin_42282727/article/details/107505014
+query传递参数会在url后面用？连接起来，且参数之间用&&符号连接然后显示在页面的url中；params传递参数不会显示在页面中；
+
+### 5.  在开发过程中写后台路由时忘记写 module.exports = router;
+ 报错throw new Typ   eError('Router.use() requires a middleware function but got a ' + gettype(fn))
+ 参考网址：https://blog.csdn.net/weixin_30770495/article/details/96569711
+ 
+### 6.  
