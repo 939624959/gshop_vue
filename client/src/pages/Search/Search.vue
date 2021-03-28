@@ -66,6 +66,7 @@
         const keyword = this.keyword.trim()
         if (keyword) {
           this.empty = false
+          this.succ = false
           this.$store.dispatch('searchShops', keyword)
         }
       }
