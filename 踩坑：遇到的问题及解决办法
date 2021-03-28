@@ -33,4 +33,87 @@ query传递参数会在url后面用？连接起来，且参数之间用&&符号�
 ### 8.  运行课程代码时报错：Permission denied  参考网址：https://blog.csdn.net/FrankL93/article/details/108079756
 解决办法：chmod 777 +绝对路径  用该方法进行授权
 
-### 9.  
+### 9.  商家页 右侧食品列表滚动--->左侧分类滚到高亮显示 参考网址：https://blog.csdn.net/weixin_43617604/article/details/100156078
+        computed: {
+          currentIndex (index) {
+            const {scrollY, tops} = this
+            return tops.findIndex((top, index) => {
+              this._initLeftScroll(index);  
+              return scrollY >= (top-10) && scrollY < (tops[index+1]-10)
+            })
+          }
+        },
+        methods: {
+          _initLeftScroll(index){
+            let menu = this.$refs.menuList;
+            let el = menu[index];
+            this.leftBscroll.scrollToElement(el,300,0,-300)
+          },
+        }
+        
+### 10. 搜索列表返回结果是‘搜索无结果’，这是数据源问题。
+解决方案：更改经纬度坐标
+
+### 11. ShopRatings组件下方评论过滤后，滚动区域高度不更新，导致下方出现空白滚动
+解决方案：在点击新的选项时触发better-scroll更新
+    methods: {
+      setSelectType (type) {
+        this.selectType = type
+        this.$nextTick(() => {
+          this.scroll && this.scroll.refresh()
+        })
+      },
+      toggleTextMust () {
+        this.textMust = !this.textMust
+        this.$nextTick(() => {
+          this.scroll && this.scroll.refresh()
+        })
+      }
+    },
+    
+### 12. 搜索出的内容加滚动，并实现每次搜索后滚动区域变化
+解决方案：当搜索到的商家数据发生变化后，创建/更新better-scroll的实例对象
+
+### 13. 搜索结果成功与失败用同一变量标识，返回首页再点到搜索页出现展示异常。
+解决方案，用两个变量标识。
+12&13问题相关代码如下
+    data () {
+      return {
+        keyword: '',
+        imgBaseUrl: 'http://cangdu.org:8001/img/',
+        empty: false,  //标识搜索结果是否为空
+        succ: false    //标识搜索结果是否正常
+      }
+    },
+    computed: {
+      ...mapState(['searchShops'])
+    },
+    watch: {
+      searchShops (value) {
+        if (value.length === 0) {
+          this.empty = true
+        } else {
+          this.succ = true
+          this.$nextTick(() => {
+            if (!this.scroll) {
+              this.scroll = new BScroll('.list', {
+                click: true
+              })
+            } else {
+              this.scroll.refresh()
+            }
+          })
+        }
+      }
+    },
+    methods: {
+      search () {
+        const keyword = this.keyword.trim()
+        if (keyword) {
+          this.empty = false    //每次有关键字提交搜索时，修改状态
+          this.$store.dispatch('searchShops', keyword)
+        }
+      }
+    }
+  
+       
