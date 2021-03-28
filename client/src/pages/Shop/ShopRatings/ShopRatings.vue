@@ -74,13 +74,9 @@
 
 <script>
   import {mapState, mapGetters} from 'vuex'
-  import Vue from 'vue'
-  import moment from 'moment'
   import BScroll from 'better-scroll'
   import Star from '../../../components/Star/Star'
-  Vue.filter('date-format', (time, format) => {
-    return moment(time).format(format || 'YYYY-MM-DD HH:mm:ss')
-  })
+
   export default {
     data () {
       return {
