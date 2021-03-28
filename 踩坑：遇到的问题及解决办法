@@ -110,7 +110,9 @@ query传递参数会在url后面用？连接起来，且参数之间用&&符号�
       search () {
         const keyword = this.keyword.trim()
         if (keyword) {
-          this.empty = false    //每次有关键字提交搜索时，修改状态
+          //每次有关键字提交搜索时，修改状态
+          this.empty = false    
+          this.succ = false
           this.$store.dispatch('searchShops', keyword)
         }
       }
