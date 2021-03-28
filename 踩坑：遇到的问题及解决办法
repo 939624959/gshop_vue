@@ -22,4 +22,15 @@ query传递参数会在url后面用？连接起来，且参数之间用&&符号�
  报错throw new Typ   eError('Router.use() requires a middleware function but got a ' + gettype(fn))
  参考网址：https://blog.csdn.net/weixin_30770495/article/details/96569711
  
-### 6.  
+### 6.  后台获取一次性图形验证码，需要一些特定配置
+参考网址：https://blog.csdn.net/Lin_Zc/article/details/89384396
+
+### 7.  商家列表头像不显示问题
+视频中讲到图片都需要一个baseUrl，在浏览器中打开基础路径是一个更详尽的仿饿了么外卖项目，我把后台数据中相关图片替换成了该项目的图片id后正常显示
+项目参考路径 1）https://github.com/bailicangdu/vue2-elm
+            2）https://github.com/bailicangdu/node-elm
+            
+### 8.  运行课程代码时报错：Permission denied  参考网址：https://blog.csdn.net/FrankL93/article/details/108079756
+解决办法：chmod 777 +绝对路径  用该方法进行授权
+
+### 9.  
